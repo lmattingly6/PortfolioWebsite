@@ -338,8 +338,21 @@ a {
 #resumeFrame {
     display: block;
     width: 100%;
-    min-height: 864px;
+    height: 864px;
     border: none;
+    background: #ffffff;
+}
+
+@media (max-width: 768px) {
+    #resumeFrame {
+        height: 700px;
+    }
+}
+
+@media (max-width: 480px) {
+    #resumeFrame {
+        height: 600px;
+    }
 }
 
 .site-footer {
