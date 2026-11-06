@@ -335,6 +335,12 @@ a {
     margin: 0 0 40px;
     text-align: left;
 }
+#resumeFrame {
+    display: block;
+    width: 100%;
+    min-height: 864px;
+    border: none;
+}
 
 .site-footer {
     width: min(1120px, calc(100% - 48px));
