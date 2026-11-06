@@ -33,6 +33,7 @@
           
             </section>
             <!-- Loading Popup -->
+<!-- Loading Popup -->
 <div id="loadingPopup" class="loading-overlay">
     <div class="loading-content">
         <div class="loader"></div>
@@ -41,6 +42,28 @@
     </div>
 </div>
 
+<script>
+    const loadingStart = Date.now();
+    let popupHidden = false;
+
+    function hideResumeLoader() {
+        if (popupHidden) return;
+
+        popupHidden = true;
+
+        const elapsed = Date.now() - loadingStart;
+        const remaining = Math.max(0, 800 - elapsed);
+
+        setTimeout(() => {
+            document.getElementById("loadingPopup")
+                .classList.add("hidden");
+        }, remaining);
+    }
+
+    // Fallback after 20 seconds
+    setTimeout(hideResumeLoader, 20000);
+</script>
+
 <!-- Microsoft Resume Embed -->
 <iframe
     id="resumeFrame"
@@ -48,7 +71,8 @@
     width="100%"
     height="864"
     frameborder="0"
-    title="Embedded Resume">
+    title="Resume Document"
+    onload="hideResumeLoader()">
 </iframe>
     </main>
 
