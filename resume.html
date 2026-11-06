@@ -32,9 +32,24 @@
         </section>
           
             </section>
-            <iframe src="https://1drv.ms/w/c/446803da94ee84e0/IQT6qW8TDd4gQLmdSgq6GPo6AdB0Q-4pFi0xxbUYurmUWMc?em=2" width="952px" height="864px" frameborder="0" title="PowerPoint Viewer">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> document, powered by <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+            <!-- Loading Popup -->
+<div id="loadingPopup" class="loading-overlay">
+    <div class="loading-content">
+        <div class="loader"></div>
+        <h2>Loading Resume</h2>
+        <p>Please wait while the document loads...</p>
+    </div>
+</div>
 
-            
+<!-- Microsoft Resume Embed -->
+<iframe
+    id="resumeFrame"
+    src="https://1drv.ms/w/c/446803da94ee84e0/IQT6qW8TDd4gQLmdSgq6GPo6AdB0Q-4pFi0xxbUYurmUWMc?em=2"
+    width="100%"
+    height="864"
+    frameborder="0"
+    title="Embedded Resume">
+</iframe>
     </main>
 
     <footer class="site-footer">
@@ -49,6 +64,41 @@
         </div>
         
     </footer>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const resumeFrame = document.getElementById("resumeFrame");
+    const loadingPopup = document.getElementById("loadingPopup");
+
+    // Keep popup visible briefly to prevent flashing
+    const minimumLoadingTime = 800;
+    const startTime = Date.now();
+
+    function hideLoadingPopup() {
+
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = Math.max(
+            0,
+            minimumLoadingTime - elapsedTime
+        );
+
+        setTimeout(function () {
+            loadingPopup.classList.add("hidden");
+        }, remainingTime);
+    }
+
+    // Hide popup when Microsoft document iframe loads
+    resumeFrame.addEventListener("load", hideLoadingPopup);
+
+    // Fallback in case Microsoft takes too long
+    setTimeout(function () {
+        loadingPopup.classList.add("hidden");
+    }, 20000);
+
+});
+</script>
+
 </body>
 </html>
+
 
